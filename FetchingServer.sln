@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1700.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetchingServer", "FetchingServer\FetchingServer.csproj", "{E9340078-706C-4282-A55E-9F04079D7988}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9340078-706C-4282-A55E-9F04079D7988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9340078-706C-4282-A55E-9F04079D7988}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9340078-706C-4282-A55E-9F04079D7988}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9340078-706C-4282-A55E-9F04079D7988}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19C5253C-E2E5-41F6-AF9F-634F0FBF2024}
+	EndGlobalSection
+EndGlobal
