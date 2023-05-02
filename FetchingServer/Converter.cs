@@ -72,7 +72,7 @@ namespace FetchingServer
 
             try
 			{
-				obj.id = objectNumber[0].InnerText;
+				obj.id = objectNumber[0].InnerText.ToString();
 			}
 			catch
 			{
@@ -82,7 +82,7 @@ namespace FetchingServer
 
             try
             {
-                obj.description = description[0].InnerText;
+                obj.description = description[0].InnerText.ToString();
             }
             catch
             {
@@ -92,7 +92,7 @@ namespace FetchingServer
 
             try
             {
-                obj.objectTitle = objectTitle[0].InnerText;
+                obj.objectTitle = objectTitle[0].InnerText.ToString();
             }
             catch
             {
@@ -102,7 +102,7 @@ namespace FetchingServer
 
             try
             {
-                obj.creatorRole = creatorRole[0].InnerText;
+                obj.creatorRole = creatorRole[0].InnerText.ToString();
             }
             catch
             {
@@ -112,7 +112,7 @@ namespace FetchingServer
 
             try
             {
-                obj.productionPlace = productionPlace[0].InnerText;
+                obj.productionPlace = productionPlace[0].InnerText.ToString();
             }
             catch
             {
@@ -122,7 +122,7 @@ namespace FetchingServer
 
             try
             {
-                obj.pid_work_uri = PIDWorkURI[0].InnerText;
+                obj.pid_work_uri = PIDWorkURI[0].InnerText.ToString();
             }
             catch
             {
@@ -132,7 +132,7 @@ namespace FetchingServer
 
             try
             {
-                obj.pid_work_url = PIDWorkURL[0].InnerText;
+                obj.pid_work_url = PIDWorkURL[0].InnerText.ToString();
             }
             catch
             {
@@ -143,7 +143,7 @@ namespace FetchingServer
 
             try
             {
-                obj.category = objectCategory[0].InnerText;
+                obj.category = objectCategory[0].InnerText.ToString();
             }
             catch
             {
@@ -153,7 +153,7 @@ namespace FetchingServer
 
             try
             {
-                obj.guid = guid[0].InnerText;
+                obj.guid = guid[0].InnerText.ToString();
             }
             catch
             {
@@ -163,7 +163,7 @@ namespace FetchingServer
 
             try
             {
-                obj.priref = priref[0].InnerText;
+                obj.priref = priref[0].InnerText.ToString();
             }
             catch
             {
@@ -173,7 +173,7 @@ namespace FetchingServer
 
             try
             {
-                obj.objectName = objectName[0].InnerText;
+                obj.objectName = objectName[0].InnerText.ToString();
             }
             catch
             {
@@ -183,7 +183,7 @@ namespace FetchingServer
 
             try
             {
-                obj.objectNumber = objectNumber[0].InnerText;
+                obj.objectNumber = objectNumber[0].InnerText.ToString();
             }
             catch
             {
@@ -193,7 +193,7 @@ namespace FetchingServer
 
             try
             {
-                obj.objectPlacingA = objectPlacingA[0].InnerText;
+                obj.objectPlacingA = objectPlacingA[0].InnerText.ToString();
             }
             catch
             {
@@ -204,7 +204,7 @@ namespace FetchingServer
 
             try
             {
-                obj.objectPlacingB = objectPlacingB[0].InnerText;
+                obj.objectPlacingB = objectPlacingB[0].InnerText.ToString();
             }
             catch
             {
@@ -214,7 +214,7 @@ namespace FetchingServer
 
             try
             {
-                obj.manufacturer = manufacturer[0].InnerText;
+                obj.manufacturer = manufacturer[0].InnerText.ToString();
 
             }
             catch
@@ -225,7 +225,7 @@ namespace FetchingServer
 
             try
             {
-                obj.creator = creator[0].InnerText;
+                obj.creator = creator[0].InnerText.ToString();
             }
             catch
             {
@@ -235,7 +235,7 @@ namespace FetchingServer
 
             try
             {
-                obj.date_start = date_start[0].InnerText;
+                obj.date_start = date_start[0].InnerText.ToString();
             }
             catch
             {
@@ -245,7 +245,7 @@ namespace FetchingServer
 
             try
             {
-                obj.date_end = date_end[0].InnerText;
+                obj.date_end = date_end[0].InnerText.ToString();
             }
             catch
             {
@@ -392,3 +392,8 @@ namespace FetchingServer
 
 	}
 }
+
+
+
+
+
