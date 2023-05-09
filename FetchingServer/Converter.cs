@@ -16,6 +16,20 @@ namespace FetchingServer
 		{
 			CollectionObject obj = new CollectionObject();
             obj.images = new List<CollectionImage>();
+            obj.category = new List<Category>();
+            obj.material = new List<Material>();
+            obj.manufacturer = new List<Manufacturer>();
+            obj.collection = new List<Collection>();
+            obj.productionPlace = new List<ProductionPlace>();
+            obj.creator = new List<Creator>();
+            obj.dimensions = new List<Dimension>();
+
+            List<CreatorRoles> tempCreatorRoles = new List<CreatorRoles>();
+
+            List<string> tempDimensionType = new List<string>();
+            List<string> tempDimensionUnit = new List<string>();
+            List<string> tempDimensionValue = new List<string>();
+
 
 
 			XmlDocument xDoc = new XmlDocument();
@@ -28,8 +42,8 @@ namespace FetchingServer
             XmlNodeList objectName = xDoc.GetElementsByTagName("object_name");
 			XmlNodeList objectNumber = xDoc.GetElementsByTagName("object_number");
             XmlNodeList objectCategory = xDoc.GetElementsByTagName("object_category");
-            XmlNodeList objectPlacingA = xDoc.GetElementsByTagName("objectplacinga");
-			XmlNodeList objectPlacingB = xDoc.GetElementsByTagName("objectplacingb");
+            XmlNodeList objectPlacing = xDoc.GetElementsByTagName("objectplacinga");
+
 			XmlNodeList manufacturer = xDoc.GetElementsByTagName("manufacturer");
 
 			XmlNodeList creator = xDoc.GetElementsByTagName("creator");
@@ -40,7 +54,11 @@ namespace FetchingServer
             XmlNodeList date_start = xDoc.GetElementsByTagName("dating.date.start");
 			XmlNodeList date_end = xDoc.GetElementsByTagName("dating.date.end");
 			XmlNodeList material = xDoc.GetElementsByTagName("material");
-            XmlNodeList dim = xDoc.GetElementsByTagName("dimension.unit");
+
+            XmlNodeList dimensionUnit = xDoc.GetElementsByTagName("dimension.unit");
+            XmlNodeList dimensionType = xDoc.GetElementsByTagName("dimension.type");
+            XmlNodeList dimensionValue = xDoc.GetElementsByTagName("dimension.value");
+
             XmlNodeList media = xDoc.GetElementsByTagName("media.reference");
             XmlNodeList description = xDoc.GetElementsByTagName("label.text");
 
@@ -48,30 +66,23 @@ namespace FetchingServer
             XmlNodeList PIDWorkURL = xDoc.GetElementsByTagName("PID_work_URL");
 
 
+
+
+
+            #region TEMP GENERATED DATA
             // TEMP STATIC TIMESTAMP DATA
             obj.entry_created = "2021-11-12T06:33:45";
             obj.entry_modified = "2022-12-12T09:19:45";
 
-            Random randLength = new Random();
-            int length = randLength.Next(1, 50);
+  
 
-            Random randHeight = new Random();
-            int height = randHeight.Next(1, 50);
+            #endregion TEMP GENERATED DATA
 
-            Random randWidth = new Random();
-            int width = randWidth.Next(1, 50);
 
-            Random randWeight = new Random();
-            int weight = randWeight.Next(1, 50);
 
-            // TEMP STATIC MEASUREMENT DATA
-            obj.length = length.ToString() + "cm";
-            obj.width = width.ToString() + "cm";
-            obj.height = height.ToString() + "cm";
-            obj.weight = weight.ToString() + "cm";
-
+            #region OBJECTS WITHOUT MULTIPLE OCCURENCES
             try
-			{
+            {
 				obj.id = objectNumber[0].InnerText.ToString();
 			}
 			catch
@@ -102,26 +113,6 @@ namespace FetchingServer
 
             try
             {
-                obj.creatorRole = creatorRole[0].InnerText.ToString();
-            }
-            catch
-            {
-                Console.WriteLine("creatorRole does not exist, defaulting to empty field");
-                obj.creatorRole = "empty_field";
-            }
-
-            try
-            {
-                obj.productionPlace = productionPlace[0].InnerText.ToString();
-            }
-            catch
-            {
-                Console.WriteLine("productionPlace does not exist, defaulting to empty field");
-                obj.productionPlace = "empty_field";
-            }
-
-            try
-            {
                 obj.pid_work_uri = PIDWorkURI[0].InnerText.ToString();
             }
             catch
@@ -138,17 +129,6 @@ namespace FetchingServer
             {
                 Console.WriteLine("PIDWorkURL does not exist, defaulting to empty field");
                 obj.pid_work_url = "empty_field";
-            }
-
-
-            try
-            {
-                obj.category = objectCategory[0].InnerText.ToString();
-            }
-            catch
-            {
-                Console.WriteLine("objectCategory does not exist, defaulting to empty field");
-                obj.category = "empty_field";
             }
 
             try
@@ -171,15 +151,6 @@ namespace FetchingServer
                 obj.priref = "empty_field";
             }
 
-            try
-            {
-                obj.objectName = objectName[0].InnerText.ToString();
-            }
-            catch
-            {
-                Console.WriteLine("objectName does not exist, defaulting to empty field");
-                obj.objectName = "empty_field";
-            }
 
             try
             {
@@ -191,47 +162,6 @@ namespace FetchingServer
                 obj.objectNumber = "empty_field";
             }
 
-            try
-            {
-                obj.objectPlacingA = objectPlacingA[0].InnerText.ToString();
-            }
-            catch
-            {
-                Console.WriteLine("objectPlacingA does not exist, defaulting to empty field");
-                obj.objectPlacingA = "empty_field";
-                
-            }
-
-            try
-            {
-                obj.objectPlacingB = objectPlacingB[0].InnerText.ToString();
-            }
-            catch
-            {
-                Console.WriteLine("objectPlacingB does not exist, defaulting to empty field");
-                obj.objectPlacingB = "empty_field";
-            }
-
-            try
-            {
-                obj.manufacturer = manufacturer[0].InnerText.ToString();
-
-            }
-            catch
-            {
-                Console.WriteLine("manufacturer does not exist, defaulting to empty field");
-                obj.manufacturer = "empty_field";
-            }
-
-            try
-            {
-                obj.creator = creator[0].InnerText.ToString();
-            }
-            catch
-            {
-                Console.WriteLine("creator does not exist, defaulting to empty field");
-                obj.creator = "empty_field";
-            }
 
             try
             {
@@ -254,6 +184,56 @@ namespace FetchingServer
             }
 
 
+            try
+            {
+                obj.objectPlacing = objectPlacing[0].InnerText.ToString();
+            }
+            catch
+            {
+                Console.WriteLine("objectPlacingA does not exist, defaulting to empty field");
+                obj.objectPlacing = "empty_field";
+
+            }
+
+            #endregion OBJECTS WITHOUT MULTIPLE OCCURENCES
+
+
+
+
+
+
+
+
+
+
+            /*
+
+
+            try
+            {
+                obj.creatorRole = creatorRole[0].InnerText.ToString();
+            }
+            catch
+            {
+                Console.WriteLine("creatorRole does not exist, defaulting to empty field");
+                obj.creatorRole = "empty_field";
+            }
+
+        
+          
+
+       
+
+           
+
+
+    
+        
+            */
+      
+
+            #region OBJECTS WITH MULTIPLE OCCURENCES
+
             // Hier worden de onderdelen met meerdere waardes vertaald
 
 
@@ -262,40 +242,37 @@ namespace FetchingServer
             {
                 if (material.Count == 0)
                 {
-                    Console.WriteLine("Geen material");
-                    obj.material = "onbekend";
+                    // No materials
+                  
                 }else if (material.Count == 1)
                 {
-                    Console.WriteLine("1 material");
-                    obj.material = material[0].InnerText;
+                    Material mat = new Material();
+                    mat.material = material[0].InnerText;
+                    mat.externalLink = "no-external-link";
+
+                    obj.material.Add(mat);
                 }
                 else if (material.Count > 1)
                 {
                     string materialstring = "";
                     Console.WriteLine("Meerdere materials");
-                    int count = 0;
-                    int max = material.Count;
+
 
                     foreach (XmlNode node in material)
                     {
-                        if (count < max -1)
-                        {
-                            materialstring += node.InnerText + ",";
-                        }
-                        else
-                        {
-                            materialstring += node.InnerText;
-                        }
+                        Material mat = new Material();
+                        mat.material = node.InnerText;
+                        mat.externalLink = "no-external-link";
 
-                        count++;
+                        obj.material.Add(mat);
+
                     }
 
-                    obj.material = materialstring;
                 }
             }
             catch
             {
-                obj.material = "empty_field";
+
             }
             // EIND MATERIAL
 
@@ -305,47 +282,319 @@ namespace FetchingServer
             {
                 if (objectName.Count == 0)
                 {
-                    Console.WriteLine("Geen objectName");
-                    obj.objectName = "onbekend";
+                    // No object name
                 }
                 else if (objectName.Count == 1)
                 {
-                    Console.WriteLine("1 objectName");
-                    obj.objectName = objectName[0].InnerText;
+                    ObjectName name = new ObjectName();
+                    name.objectname = objectName[0].InnerText;
+                    name.externalLink = "no-external-link";
+                    obj.objectName.Add(name);
+
                 }
                 else if (objectName.Count > 1)
                 {
-                    string objectnamestring = "";
-                    Console.WriteLine("Meerdere objectnames");
-                    int count = 0;
-                    int max = objectName.Count;
+              
+              
+                 
 
                     foreach (XmlNode node in objectName)
                     {
-                        if (count < max - 1)
-                        {
-                            objectnamestring += node.InnerText + ",";
-                        }
-                        else
-                        {
-                            objectnamestring += node.InnerText;
-                        }
-
-                        count++;
+                        ObjectName name = new ObjectName();
+                        name.objectname = node.InnerText;
+                        name.externalLink = "no-external-link";
+                        obj.objectName.Add(name);
                     }
 
-                    obj.objectName = objectnamestring;
                 }
             }
             catch
             {
-                obj.objectName = "empty_field";
+ 
             }
 
             // EIND OBJECTNAME
 
+            // MANUFACTURER
+
+            try
+            {
+                if (manufacturer.Count == 0)
+                {
+                    // No manufacturer name
+                }
+                else if (manufacturer.Count == 1)
+                {
+                    Manufacturer manu = new Manufacturer();
+                    manu.manufacturer = manufacturer[0].InnerText;
+                    manu.externalLink = "no-external-link";
+                    obj.manufacturer.Add(manu);
 
 
+                }
+                else if (manufacturer.Count > 1)
+                {
+
+                    foreach (XmlNode node in manufacturer)
+                    {
+
+                        Manufacturer manu = new Manufacturer();
+                        manu.manufacturer = node.InnerText;
+                        manu.externalLink = "no-external-link";
+                        obj.manufacturer.Add(manu);
+
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+
+
+            // EIND MANUFACTURER
+
+            // CREATOR
+
+            try
+            {
+                if (creator.Count == 0)
+                {
+                    Console.WriteLine("NO CREATOR!!!!!!!");
+                    // No object name
+                }
+                else if (creator.Count == 1)
+                {
+                    Console.WriteLine("ONLY ONE CREATOR!!!!!!!");
+                    Creator crea = new Creator();
+                    crea.creator = creator[0].InnerText;
+                    crea.externalLink = "no-external-link";
+
+                    try
+                    {
+                        crea.creatorRole = creatorRole[0].InnerText;
+                    }
+                    catch
+                    {
+                        crea.creatorRole = "no-role";
+                    }
+                    
+                    obj.creator.Add(crea);
+                    
+
+                }
+                else if (creator.Count > 1)
+                {
+                    Console.WriteLine("MULTIPLE CREATOR!!!!!!!");
+                    try
+                    {
+                        foreach (XmlNode node in creatorRole)
+                        {
+                            CreatorRoles role = new CreatorRoles();
+                            role.creatorRole = node.InnerText;
+                            tempCreatorRoles.Add(role);
+                        }
+                    }
+                    catch
+                    {
+                        CreatorRoles role = new CreatorRoles();
+                        role.creatorRole = "not-specified";
+                        tempCreatorRoles.Add(role);
+                    }
+
+                    int index = 0;
+                    foreach (XmlNode node in creator)
+                    {
+
+                        Creator crea = new Creator();
+                        crea.creator = node.InnerText;
+                        crea.externalLink = "no-external-link";
+                        crea.creatorRole = tempCreatorRoles[index].creatorRole;
+                        obj.creator.Add(crea);
+                        index++;
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+
+
+            // EIND CREATOR
+
+            // PRODUCTION PLACE
+
+            try
+            {
+                if (productionPlace.Count == 0)
+                {
+                    // No object name
+                }
+                else if (productionPlace.Count == 1)
+                {
+                    ProductionPlace place = new ProductionPlace();
+                    place.place = productionPlace[0].InnerText;
+                    place.externalLink = "no-external-link";
+                    obj.productionPlace.Add(place);
+
+
+                }
+                else if (productionPlace.Count > 1)
+                {
+
+                    foreach (XmlNode node in productionPlace)
+                    {
+
+                        ProductionPlace place = new ProductionPlace();
+                        place.place = node.InnerText;
+                        place.externalLink = "no-external-link";
+                        obj.productionPlace.Add(place);
+
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+
+
+            // EIND PRODUCTION PLACE
+
+
+            // CATEGORY
+
+            try
+            {
+                if (objectCategory.Count == 0)
+                {
+                    // No object name
+                }
+                else if (objectCategory.Count == 1)
+                {
+                    Category cat = new Category();
+                    cat.category = objectCategory[0].InnerText;
+                    cat.externalLink = "no-external-link";
+                    obj.category.Add(cat);
+
+
+                }
+                else if (objectCategory.Count > 1)
+                {
+
+                    foreach (XmlNode node in objectCategory)
+                    {
+
+                        Category cat = new Category();
+                        cat.category = node.InnerText;
+                        cat.externalLink = "no-external-link";
+                        obj.category.Add(cat);
+
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+
+
+            // EIND CATEGORY
+
+
+
+            // MEASUREMENTS
+
+
+            if (dimensionType.Count == 1)
+            {
+
+                Dimension dim = new Dimension();
+                dim.dimensionType = dimensionType[0].InnerText;
+
+                try
+                {
+                    dim.dimensionUnit = dimensionUnit[0].InnerText;
+                }
+                catch
+                {
+                    dim.dimensionUnit = "empty-field";
+                }
+
+                try
+                {
+                    dim.dimensionValue = dimensionValue[0].InnerText;
+                }
+                catch
+                {
+                    dim.dimensionValue = "empty-field";
+                }
+
+
+            }else if (dimensionType.Count > 1)
+            {
+
+                try
+                {
+                    foreach (XmlNode node in dimensionUnit)
+                    {
+                        tempDimensionUnit.Add(node.InnerText);
+                    }
+                }
+                catch
+                {
+                    tempDimensionUnit.Add("empty-field");
+                }
+
+                try
+                {
+                    foreach (XmlNode node in dimensionValue)
+                    {
+                        tempDimensionValue.Add(node.InnerText);
+                    }
+                }
+                catch
+                {
+                    tempDimensionValue.Add("empty-field");
+                }
+
+                try
+                {
+                    int index = 0;
+
+                    foreach (XmlNode node in dimensionType)
+                    {
+                        Dimension dim = new Dimension();
+                        dim.dimensionType = node.InnerText;
+                        dim.dimensionValue = tempDimensionValue[index];
+                        dim.dimensionUnit = tempDimensionUnit[index];
+                        obj.dimensions.Add(dim);
+
+                        index++;
+                    }
+                }
+                catch
+                {
+
+                }
+
+
+
+            }
+
+
+
+
+            // END MEASUREMENTS
+
+      
+
+            #endregion OBJECTS WITH MULTIPLE OCCURENCES
 
 
 
@@ -355,10 +604,11 @@ namespace FetchingServer
                 foreach (XmlNode node in media)
                 {
                     CollectionImage img = new CollectionImage();
-
+                    
                     string imageName = node.InnerText;
 
-
+                   
+                   
                     img.imageUrl = Configuration.adlibImageDatabaseUrl + imageName;
                     img.imageName = node.InnerText;
 
@@ -370,7 +620,6 @@ namespace FetchingServer
             {
 
             }
-
 
 
 
@@ -389,6 +638,7 @@ namespace FetchingServer
 
 
 		}
+
 
 	}
 }
