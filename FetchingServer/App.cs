@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Text;
 using System.Threading;
 using FetchingServer.Objects;
 using Newtonsoft.Json;
@@ -112,6 +114,8 @@ namespace FetchingServer
 					Console.WriteLine("============ START JSON OUTPUT ============\n\n\n");
 					string output = JsonConvert.SerializeObject(collectionList, Formatting.Indented);
 					Console.WriteLine(output);
+					byte[] outputBytes = Encoding.ASCII.GetBytes(output);
+					File.WriteAllBytes("C:\\AxiellOutput\\collectionpart.json", outputBytes);
                     Console.WriteLine("\n\n\n============ END JSON OUTPUT ============");
                 }
 
@@ -119,7 +123,30 @@ namespace FetchingServer
 				{
 					ShowHelp();
 				}
-				if (cmd.Contains("t"))
+
+				if (cmd.Contains("import"))
+				{
+					string[] query = cmd.Split(' ');
+					string[] file = new string[0];
+
+					try
+					{
+						file = File.ReadAllLines(query[1]);
+					}
+					catch
+					{
+						Console.WriteLine("Can't read from: {0}", query[1]);
+					}
+
+					foreach (string line in file)
+					{
+                        FetchObjects(int.Parse(line.ToString()));
+					
+                    }
+
+				}
+
+				if (cmd.Contains("transfer"))
 				{
 					string[] query = cmd.Split(' ');
 					int parameterCount = query.Count();
