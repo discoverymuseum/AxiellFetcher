@@ -44,6 +44,8 @@ namespace FetchingServer
             XmlNodeList objectCategory = xDoc.GetElementsByTagName("object_category");
             XmlNodeList objectPlacing = xDoc.GetElementsByTagName("objectplacinga");
 
+            XmlNodeList collection = xDoc.GetElementsByTagName("collection.name");
+
 			XmlNodeList manufacturer = xDoc.GetElementsByTagName("manufacturer");
 
 			XmlNodeList creator = xDoc.GetElementsByTagName("creator");
@@ -466,33 +468,35 @@ namespace FetchingServer
             // EIND PRODUCTION PLACE
 
 
-            // CATEGORY
+            // COLLECTION
 
             try
             {
-                if (objectCategory.Count == 0)
+                if (collection.Count == 0)
                 {
                     // No object name
                 }
-                else if (objectCategory.Count == 1)
+                else if (collection.Count == 1)
                 {
-                    Category cat = new Category();
-                    cat.category = objectCategory[0].InnerText;
-                    cat.externalLink = "no-external-link";
-                    obj.category.Add(cat);
+                    Collection col = new Collection();
+
+                    col.collection = collection[0].InnerText;
+                    col.externalLink = "no-external-link";
+                    obj.collection.Add(col);
 
 
                 }
-                else if (objectCategory.Count > 1)
+                else if (collection.Count > 1)
                 {
 
-                    foreach (XmlNode node in objectCategory)
+                    foreach (XmlNode node in collection)
                     {
 
-                        Category cat = new Category();
-                        cat.category = node.InnerText;
-                        cat.externalLink = "no-external-link";
-                        obj.category.Add(cat);
+                        Collection col = new Collection();
+
+                        col.collection = node.InnerText;
+                        col.externalLink = "no-external-link";
+                        obj.collection.Add(col);
 
                     }
 
@@ -504,7 +508,7 @@ namespace FetchingServer
             }
 
 
-            // EIND CATEGORY
+            // EIND COLLECTION
 
 
 
