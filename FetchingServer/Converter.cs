@@ -23,6 +23,7 @@ namespace FetchingServer
             obj.productionPlace = new List<ProductionPlace>();
             obj.creator = new List<Creator>();
             obj.dimensions = new List<Dimension>();
+            obj.objectName = new List<ObjectName>();
 
             List<CreatorRoles> tempCreatorRoles = new List<CreatorRoles>();
 
@@ -89,6 +90,8 @@ namespace FetchingServer
 			}
 			catch
 			{
+
+                App.WriteErrorString("ObjectNumber does not exist, defaulting to empty field");
 				Console.WriteLine("ObjectNumber does not exist, defaulting to empty field");
                 obj.id = "empty_field";
 			}
@@ -99,6 +102,7 @@ namespace FetchingServer
             }
             catch
             {
+                App.WriteErrorString("description does not exist, defaulting to empty field");
                 Console.WriteLine("description does not exist, defaulting to empty field");
                 obj.description = "empty_field";
             }
@@ -109,6 +113,7 @@ namespace FetchingServer
             }
             catch
             {
+                App.WriteErrorString("objectTitle does not exist, defaulting to empty field");
                 Console.WriteLine("objectTitle does not exist, defaulting to empty field");
                 obj.objectTitle = "empty_field";
             }
@@ -119,6 +124,8 @@ namespace FetchingServer
             }
             catch
             {
+                App.WriteErrorString("PIDWorkURI does not exist, defaulting to empty field");
+
                 Console.WriteLine("PIDWorkURI does not exist, defaulting to empty field");
                 obj.pid_work_uri = "empty_field";
             }
@@ -129,6 +136,9 @@ namespace FetchingServer
             }
             catch
             {
+
+                App.WriteErrorString("PIDWorkURL does not exist, defaulting to empty field");
+
                 Console.WriteLine("PIDWorkURL does not exist, defaulting to empty field");
                 obj.pid_work_url = "empty_field";
             }
@@ -139,6 +149,9 @@ namespace FetchingServer
             }
             catch
             {
+
+                App.WriteErrorString("guid does not exist, defaulting to empty field");
+
                 Console.WriteLine("guid does not exist, defaulting to empty field");
                 obj.guid = "empty_field";
             }
@@ -149,6 +162,8 @@ namespace FetchingServer
             }
             catch
             {
+                App.WriteErrorString("priref does not exist, defaulting to empty field");
+
                 Console.WriteLine("priref does not exist, defaulting to empty field");
                 obj.priref = "empty_field";
             }
@@ -160,6 +175,9 @@ namespace FetchingServer
             }
             catch
             {
+
+                App.WriteErrorString("objectNumber does not exist, defaulting to empty field");
+
                 Console.WriteLine("objectNumber does not exist, defaulting to empty field");
                 obj.objectNumber = "empty_field";
             }
@@ -171,6 +189,9 @@ namespace FetchingServer
             }
             catch
             {
+
+                App.WriteErrorString("date_start does not exist, defaulting to empty field");
+
                 Console.WriteLine("date_start does not exist, defaulting to empty field");
                 obj.date_start = "empty_field";
             }
@@ -181,6 +202,9 @@ namespace FetchingServer
             }
             catch
             {
+
+                App.WriteErrorString("date_end does not exist, defaulting to empty field");
+
                 Console.WriteLine("date_end does not exist, defaulting to empty field");
                 obj.date_end = "empty_field";
             }
@@ -192,6 +216,9 @@ namespace FetchingServer
             }
             catch
             {
+
+                App.WriteErrorString("objectPlacingA does not exist, defaulting to empty field");
+
                 Console.WriteLine("objectPlacingA does not exist, defaulting to empty field");
                 obj.objectPlacing = "empty_field";
 
@@ -274,6 +301,7 @@ namespace FetchingServer
             }
             catch
             {
+                App.WriteErrorString("Can't create MO Material list");
 
             }
             // EIND MATERIAL
@@ -312,7 +340,8 @@ namespace FetchingServer
             }
             catch
             {
- 
+                App.WriteErrorString("Can't create MO ObjectName list");
+
             }
 
             // EIND OBJECTNAME
@@ -351,6 +380,7 @@ namespace FetchingServer
             }
             catch
             {
+                App.WriteErrorString("Can't create MO Manufacturer list");
 
             }
 
@@ -421,6 +451,7 @@ namespace FetchingServer
             }
             catch
             {
+                App.WriteErrorString("Can't create MO creatorrole list");
 
             }
 
@@ -461,6 +492,7 @@ namespace FetchingServer
             }
             catch
             {
+                App.WriteErrorString("Can't create MO productionplace list");
 
             }
 
@@ -504,6 +536,7 @@ namespace FetchingServer
             }
             catch
             {
+                App.WriteErrorString("Can't create MO collection list");
 
             }
 
@@ -584,6 +617,7 @@ namespace FetchingServer
                 }
                 catch
                 {
+                    App.WriteErrorString("Can't create MO dimensions list");
 
                 }
 
@@ -622,6 +656,7 @@ namespace FetchingServer
             }
             catch
             {
+                App.WriteErrorString("Can't create MO images list");
 
             }
 

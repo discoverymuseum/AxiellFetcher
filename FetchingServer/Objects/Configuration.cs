@@ -10,6 +10,7 @@ namespace FetchingServer.Objects
 		public static string mysqlDatabasePassword = "Ginof12!@";
 		public static string mysqlDatabaseDatabase = "collection";
 		public static string adlibImageDatabaseUrl = "https://dcc-col.adlibhosting.com/wwwopacx/wwwopac.ashx?command=getcontent&server=images&value=";
+		public static string logLocation = @"C:\AxiellOutput\err.txt";
 
 
         public static int appManagedThreadId = 0;

@@ -11,15 +11,33 @@ namespace FetchingServer
 	{
 
 		public static CollectionList collectionList;
+		public static List<string> errorListBuffer;
 
 		public App()
 		{
-			
+			errorListBuffer = new List<string>();
             Helper.WriteLine("[APP] Creating app instance...");
             Thread appthread = new Thread(() => AppThread());
 			Helper.WriteLine("[APP] Starting app instance thread...");
 			appthread.Start();
 		}
+
+		public static void WriteError()
+		{
+			File.AppendAllLines(Configuration.logLocation, errorListBuffer);
+			errorListBuffer.Clear();
+		}
+
+
+		public static void WriteErrorString(string line)
+		{
+			errorListBuffer.Add(line);
+			WriteError();
+
+		
+
+		}
+
 
 		public async void AppThread()
 		{
@@ -39,11 +57,13 @@ namespace FetchingServer
 			if (isConnected == false)
 			{
                 Helper.WriteLine("[APP] MariaDB is not connected", ConsoleColor.Red);
-			}
+                WriteErrorString("'MariaDB not connected");
+            }
 			else
 			{
 				Helper.WriteLine("[APP] MariaDB is connected", ConsoleColor.Green);
-			}
+                WriteErrorString("MariaDB connected");
+            }
 
             Helper.WriteLine("[APP] Connecting to Axiell Collections...");
 			AdlibTestResponse test = await AdlibHelper.checkAdlibConnection();
@@ -141,6 +161,7 @@ namespace FetchingServer
 					foreach (string line in file)
 					{
                         FetchObjects(int.Parse(line.ToString()));
+						Thread.Sleep(2000);
 					
                     }
 
