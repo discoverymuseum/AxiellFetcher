@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 using FetchingServer.Objects;
 using System.Xml;
 using System.Globalization;
+using System.Net;
+using System.Text.Encodings.Web;
 
 namespace FetchingServer
 {
@@ -98,7 +100,9 @@ namespace FetchingServer
 
             try
             {
-                obj.description = description[0].InnerText.ToString();
+                string desc = WebUtility.HtmlDecode(description[0].InnerText.ToString());
+                
+                obj.description = desc.ToString();
             }
             catch
             {
@@ -109,7 +113,9 @@ namespace FetchingServer
 
             try
             {
-                obj.objectTitle = objectTitle[0].InnerText.ToString();
+                string tit = WebUtility.HtmlDecode(objectTitle[0].InnerText.ToString());
+
+                obj.objectTitle = tit.ToString();
             }
             catch
             {
@@ -247,14 +253,6 @@ namespace FetchingServer
                 Console.WriteLine("creatorRole does not exist, defaulting to empty field");
                 obj.creatorRole = "empty_field";
             }
-
-        
-          
-
-       
-
-           
-
 
     
         
@@ -661,7 +659,6 @@ namespace FetchingServer
             catch
             {
                 App.WriteErrorString("Can't create MO images list");
-
             }
 
 

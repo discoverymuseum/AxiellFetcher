@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using FetchingServer.Objects;
 using Newtonsoft.Json;
-
+using System.Net;
 namespace FetchingServer
 {
 	public class App
@@ -135,7 +135,7 @@ namespace FetchingServer
 					Console.WriteLine("============ START JSON OUTPUT ============\n\n\n");
 					string output = JsonConvert.SerializeObject(collectionList, Formatting.Indented);
 					Console.WriteLine(output);
-					byte[] outputBytes = Encoding.ASCII.GetBytes(output);
+					byte[] outputBytes = Encoding.UTF8.GetBytes(output);
 					File.WriteAllBytes("C:\\AxiellOutput\\collectionpart.json", outputBytes);
                     Console.WriteLine("\n\n\n============ END JSON OUTPUT ============");
                 }
