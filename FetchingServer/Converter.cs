@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using FetchingServer.Objects;
 using System.Xml;
-
+using System.Globalization;
 
 namespace FetchingServer
 {
@@ -645,12 +645,16 @@ namespace FetchingServer
                     
                     string imageName = node.InnerText;
 
-                   
-                   
-                    img.imageUrl = Configuration.adlibImageDatabaseUrl + imageName;
-                    img.imageName = node.InnerText;
 
-                    obj.images.Add(img);
+                    if (imageName.Contains(@"\images_Continium"))
+                    {
+                        string newName = imageName.Replace(@"\images_Continium", "images_Continium");
+                        img.imageUrl = Configuration.adlibImageDatabaseUrl + newName;
+                        img.imageName = node.InnerText;
+                        obj.images.Add(img);
+                    }
+
+
                 }
                     
             }

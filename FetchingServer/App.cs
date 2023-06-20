@@ -24,6 +24,7 @@ namespace FetchingServer
 
 		public static void WriteError()
 		{
+			
 			File.AppendAllLines(Configuration.logLocation, errorListBuffer);
 			errorListBuffer.Clear();
 		}
