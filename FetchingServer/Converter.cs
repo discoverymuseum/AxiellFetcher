@@ -633,7 +633,8 @@ namespace FetchingServer
             #endregion OBJECTS WITH MULTIPLE OCCURENCES
 
 
-
+           
+         
             // Process images
             try
             {
@@ -644,13 +645,12 @@ namespace FetchingServer
                     string imageName = node.InnerText;
 
 
-                    if (imageName.Contains(@"\images_Continium"))
-                    {
+                
                         string newName = imageName.Replace(@"\images_Continium", "images_Continium");
                         img.imageUrl = Configuration.adlibImageDatabaseUrl + newName;
                         img.imageName = node.InnerText;
                         obj.images.Add(img);
-                    }
+                    
 
 
                 }

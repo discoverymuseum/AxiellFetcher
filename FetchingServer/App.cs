@@ -162,7 +162,7 @@ namespace FetchingServer
 					foreach (string line in file)
 					{
                         FetchObjects(int.Parse(line.ToString()));
-						Thread.Sleep(2000);
+						Thread.Sleep(500);
 					
                     }
 
