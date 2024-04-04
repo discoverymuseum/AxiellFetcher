@@ -645,11 +645,22 @@ namespace FetchingServer
                     string imageName = node.InnerText;
 
 
-                
+                    // Check if imageName ends in .jpg .bmp .png .tiff .jpeg .gif
+
+                    if (imageName.EndsWith(".jpg") || imageName.EndsWith(".bmp") || imageName.EndsWith(".png") || imageName.EndsWith(".tiff") || imageName.EndsWith(".jpeg") || imageName.EndsWith(".gif"))
+                    {
                         string newName = imageName.Replace(@"\images_Continium", "images_Continium");
                         img.imageUrl = Configuration.adlibImageDatabaseUrl + newName;
                         img.imageName = node.InnerText;
                         obj.images.Add(img);
+                    }
+                    else
+                    {
+
+                        // No image found, skip
+                       
+
+                    }
                     
 
 
