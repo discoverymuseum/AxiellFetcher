@@ -145,6 +145,8 @@ namespace FetchingServer
 					ShowHelp();
 				}
 
+
+
 				if (cmd.Contains("import"))
 				{
 					string[] query = cmd.Split(' ');
@@ -159,10 +161,14 @@ namespace FetchingServer
 						Console.WriteLine("Can't read from: {0}", query[1]);
 					}
 
+					int count = 0;
+
 					foreach (string line in file)
 					{
                         FetchObjects(int.Parse(line.ToString()));
-						Thread.Sleep(500);
+						Thread.Sleep(1500);
+						count++;
+						Console.WriteLine("--> Aantal objecten tot nu: {0}", count);
 					
                     }
 
